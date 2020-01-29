@@ -20,8 +20,20 @@ Route::get('/proposta', function () {
 });
 
 Route::get('/selecao/professores', function () {
-    return view('selecao.professores.index');
+    return view('selecao.professor');
+});
+
+Route::get('/selecao/alunos', function () {
+    return view('selecao.aluno');
 });
 
 
-Route::get('/equipe', 'EquipeController@index');
+//Route::get('/equipe', 'ColaboradorController@index');
+
+Route::get('/contato', 'ContatoController@index');
+
+Route::get('/dashboard', 'DashboardController@index');
+
+Route::get('/dashboard/equipe', 'ColaboradorController@index')->name('listar_equipe');
+Route::post('/dashboard/equipe', 'ColaboradorController@store');
+

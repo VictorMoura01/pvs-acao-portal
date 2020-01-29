@@ -20,32 +20,43 @@
                 <div id="collapse-{{$ano->ano}}" class="collapse" aria-labelledby="header-{{$ano->ano}}"
                      data-parent="#accordion">
                     <div class="card-body">
-                        @foreach($colaboradores->unique('disciplina') as $disciplina)
-                            <div class="accordion" id="{{$disciplina->disciplina}}-{{$ano->ano}}">
-                                <div class="card">
-                                    <div class="card-header p-1">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-light" type="button" data-toggle="collapse"
-                                                    data-target="#collapse-{{$disciplina->disciplina}}-{{$ano->ano}}"
-                                                    aria-expanded="true"
-                                                    aria-controls="collapse-{{$disciplina->disciplina}}-{{$ano->ano}}">
-                                                <i class="fas fa-chevron-circle-down"></i>
-                                                {{$disciplina->disciplina}}
-                                            </button>
-                                        </h2>
-                                    </div>
-                                    <div class="collapse" id="collapse-{{$disciplina->disciplina}}-{{$ano->ano}}"
-                                         data-parent="#collapse-{{$ano->ano}}">
-                                        <div class="card-body">
-                                            <ul class="list-group">
-                                                @foreach($colaboradores->where('disciplina', $disciplina->disciplina)->all() as $colaborador)
-                                                    <li class="list-group-item item-lista-colaboradores">{{$colaborador->nome}}</li>
-                                                @endforeach
-                                            </ul>
+                        @foreach($areas as $area)
+                            @if(!$area->colaboradores()->get()->where('ano', $ano->ano)->isEmpty())
+                                <div class="accordion" id="{{$area->nome}}-{{$ano->ano}}">
+                                    <div class="card">
+                                        <div class="card-header p-1">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-light" type="button" data-toggle="collapse"
+                                                        data-target="#collapse-{{$area->nome}}-{{$ano->ano}}"
+                                                        aria-expanded="true"
+                                                        aria-controls="collapse-{{$area->nome}}-{{$ano->ano}}">
+                                                    <i class="fas fa-chevron-circle-down"></i>
+                                                    {{$area->nome}}
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div class="collapse" id="collapse-{{$area->nome}}-{{$ano->ano}}"
+                                             data-parent="#collapse-{{$ano->ano}}">
+                                            <div class="card-body">
+                                                <ul class="list-group">
+                                                    @foreach($area->colaboradores()->get() as $colaborador)
+                                                        <li class="list-group-item item-lista-colaboradores">
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    {{$colaborador->nome}}
+                                                                </div>
+                                                                <div class="row">
+                                                                    <small class="text-muted">Professor</small>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>

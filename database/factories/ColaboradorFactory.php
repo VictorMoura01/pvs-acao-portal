@@ -2,13 +2,13 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Equipe;
+use App\Colaborador;
 use Faker\Generator as Faker;
 
-$factory->define(Equipe::class, function (Faker $faker) {
+$factory->define(Colaborador::class, function (Faker $faker) {
     return [
         'nome' => $faker->name,
-        'disciplina' => 'Português',
-        'ano' => 2016,
+        'area_id' => 2,
+        'ano' => 2015,
     ];
 });

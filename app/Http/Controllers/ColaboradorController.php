@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Equipe;
+use App\Area;
+use App\Colaborador;
+use App\Http\Requests\CadastraColaboradorFormRequest;
 use Illuminate\Http\Request;
+use function foo\func;
 
-class EquipeController extends Controller
+class ColaboradorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +17,14 @@ class EquipeController extends Controller
      */
     public function index()
     {
-        $colaboradores = Equipe::all();
-        $disciplinas = Equipe::query()->distinct()->get(['disciplina']);
-        return view('equipe.index', compact('colaboradores', 'disciplinas'));
+//        $colaboradores = Colaborador::all();
+//        $areas = Area::all();
+//        return view('equipe.index', compact('colaboradores', 'areas'));
+        $colaboradores = Colaborador::all();
+        $areas = Area::all();
+        return view('dashboard.equipe', compact('colaboradores', 'areas'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,16 +44,22 @@ class EquipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $novoColaborador = new Colaborador;
+        $novoColaborador->nome = $request->nome;
+        $novoColaborador->ano = $request->ano;
+        $novoColaborador->save();
+
+        $novoColaborador->areas()->attach(Area::find($request->area));
+        return redirect()->route('listar_equipe');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Equipe $equipe
+     * @param \App\Colaborador $colaborador
      * @return \Illuminate\Http\Response
      */
-    public function show(Equipe $equipe)
+    public function show(Colaborador $colaborador)
     {
         //
     }
@@ -54,10 +67,10 @@ class EquipeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Equipe $equipe
+     * @param \App\Colaborador $colaborador
      * @return \Illuminate\Http\Response
      */
-    public function edit(Equipe $equipe)
+    public function edit(Colaborador $colaborador)
     {
         //
     }
@@ -66,10 +79,10 @@ class EquipeController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Equipe $equipe
+     * @param \App\Colaborador $colaborador
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Equipe $equipe)
+    public function update(Request $request, Colaborador $colaborador)
     {
         //
     }
@@ -77,10 +90,10 @@ class EquipeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Equipe $equipe
+     * @param \App\Colaborador $colaborador
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Equipe $equipe)
+    public function destroy(Colaborador $colaborador)
     {
         //
     }

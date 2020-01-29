@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEquipesTable extends Migration
+class CreateColaboradoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateEquipesTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('colaboradores', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('nome');
-            $table->string('disciplina');
             $table->integer('ano');
         });
     }

@@ -20,15 +20,15 @@
                     <a class="nav-link dropdown-toggle" href="#" id="drop_proposta" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">Processo Seletivo</a>
                     <div class="dropdown-menu" aria-labelledby="drop_proposta">
-                        <a href="#" class="dropdown-item">Alunos</a>
-                        <a href="#" class="dropdown-item">Professores</a>
+                        <a href="/selecao/alunos" class="dropdown-item">Alunos</a>
+                        <a href="/selecao/professores" class="dropdown-item">Professores</a>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">Galeria</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Fale Conosco</a>
+                    <a href="/contato" class="nav-link">Fale Conosco</a>
                 </li>
             </ul>
         </div>

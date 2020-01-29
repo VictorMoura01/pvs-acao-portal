@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class EquipeSeeder extends Seeder
+class ColaboradorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,8 @@ class EquipeSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Equipe::class, 2)->create()->each(function ($equipe) {
-            $equipe->save();
+        factory(\App\Colaborador::class, 2)->create()->each(function ($colaborador) {
+            $colaborador->save();
         });
     }
 }
